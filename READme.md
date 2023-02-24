@@ -63,6 +63,12 @@ If you encounter any issues running this application, please make sure that you 
 
 ---
 
+### License
+
+This application is licensed under the MIT License. See the LICENSE file for more information.
+
+---
+
 ### Acknowledgements 🙏
 
 This application was built using the spleeter library, which was created by Deezer Research. I am grateful to the Deezer Research team for their work on this library.
