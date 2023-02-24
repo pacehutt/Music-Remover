@@ -5,9 +5,10 @@ const fs_extra = require("fs-extra");
 const { filename } = require("../middlewares/upload");
 
 const handleUpload = async (req, res) => {
-  console.log("entered");
-
   if (fs.existsSync(`uploads/${filename}.mp3`)) {
+    // spleeter command to separate vocals from the uploaded audio file
+    // using spawn method to initiate a child process
+
     const spleeter = spawn("spleeter", [
       "separate",
       "-p",
@@ -19,7 +20,6 @@ const handleUpload = async (req, res) => {
 
     // collect data from script
     spleeter.stdout.on("data", (data) => {
-      console.log("Okey entered");
       console.log(`stdout:\n${data}`);
     });
     spleeter.stderr.on("data", (data) => {
@@ -27,33 +27,29 @@ const handleUpload = async (req, res) => {
     });
 
     spleeter.on("close", (code) => {
-      console.log(`child process close all stdio with code ${code}`);
+      console.log(`child process closed with code ${code}`);
+
       res.sendFile(`output/${filename}/vocals.wav`, {
         root: __dirname.replace("routes", ""),
       });
+
+      //deleting uploaded  priginal audio file
       fs.unlink(`uploads/${filename}.mp3`, (err) => {
         if (err) throw err;
         console.log("successfully deleted the audio file");
       });
+
+      //deleting the generated audio folder after 2 minutes
       setTimeout(() => {
         fs_extra.remove(`output/${filename}`, (err) => {
           if (err) return console.error(err);
-          console.log("success folder deleted!");
+          console.log("folder deleted!");
         });
       }, 120000);
-
-      console.log("printing after sending the file");
     });
-
-    // if (fs.existsSync("output/example/vocals.wav")) {
-
-    // }
   }
 };
 
-const sendAudio = (res) => {};
-
 module.exports = {
   handleUpload,
-  sendAudio,
 };
