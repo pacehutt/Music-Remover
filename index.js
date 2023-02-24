@@ -4,7 +4,7 @@ const app = express();
 const port = 3000;
 const routes = require("./routes/file.routes");
 
-const upload = require("./middlewares/upload");
+const { upload } = require("./middlewares/upload");
 
 app.get("/", (req, res) => {
   res.send("Hello World!");
