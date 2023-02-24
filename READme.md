@@ -1,12 +1,12 @@
-# Music Remover
+# Music Remover 🪄
 
-This is a music splitter application that separates the vocals from any song uploaded to the API and returns the vocals audio file in a .wav format.
+This is a music splitter 🛠️ application that separates the vocals from any song uploaded to the API and returns the vocals audio file in a .wav format.
 .
 .
 
-### Prerequisites
+### Prerequisites 📋
 
-Before running this application, you must have the following prerequisites installed:
+Before running this application, you must have the following prerequisites 📝 installed:
 
 - Node.js v14 or above
 - ffmpeg
@@ -15,13 +15,13 @@ Before running this application, you must have the following prerequisites insta
 
 #### Installing ffmpeg
 
-**Windows**
+**Windows** 🪟
 
 1. Download the latest version of ffmpeg for Windows from the official website: https://ffmpeg.org/download.html#build-windows
 2. Extract the downloaded zip file to a folder on your computer.
 3. Add the folder containing the ffmpeg executable to your system's PATH environment variable.
 
-**Linux**
+**Linux** ;)
 
 1. Open a terminal window.
 2. Run the following command to install ffmpeg: sudo apt-get install ffmpeg
@@ -35,9 +35,9 @@ Before running this application, you must have the following prerequisites insta
 
 ---
 
-### Getting Started
+### Getting Started ✅
 
-To run this application, follow these steps:
+To run this application, follow these steps: 🥅
 
 1. Clone the repository: git clone https://github.com/<your_username>/music-remover.git
 2. Change directory into the project folder: cd music-remover
@@ -51,18 +51,18 @@ _**After the response, the uploaded file and the generated vocals file will be a
 
 ---
 
-### How It Works
+### How It Works 🧠
 
 This application uses the spleeter library to separate the vocals from the rest of the music. When a song is uploaded to the API, the application uses the spleeter library to split the song into its vocal and music components. The vocal component is then saved as a .wav file and returned as the response to the API request.
 
 ---
 
-### Troubleshooting
+### Troubleshooting 🔨
 
 If you encounter any issues running this application, please make sure that you have all of the prerequisites installed correctly. If you are still experiencing issues, please check the application logs for more information.
 
 ---
 
-### Acknowledgements
+### Acknowledgements 🙏
 
 This application was built using the spleeter library, which was created by Deezer Research. I am grateful to the Deezer Research team for their work on this library.
