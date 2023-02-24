@@ -65,7 +65,7 @@ If you encounter any issues running this application, please make sure that you 
 
 ### License
 
-This application is licensed under the [MIT](https://en.wikipedia.org/wiki/MIT_License)License. See the [LICENSE ](https://github.com/pacehutt/Music-Splitter/blob/master/LICENSE)file for more information
+This application is licensed under the [MIT ](https://en.wikipedia.org/wiki/MIT_License) License. See the [LICENSE ](https://github.com/pacehutt/Music-Splitter/blob/master/LICENSE)file for more information
 
 ---
 
