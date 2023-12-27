@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>File Uploader</title>
+  </head>
+  <body>
+    <h1>My File Uploader!</h1>
+
+    File: <input type="file" accept="audio/*" name="uploader" id="f" />
+    <button id="btnUpload">Read and Upload</button>
+    <div id="output"></div>
+
+    <script>
+      const btnUpload = document.getElementById("btnUpload");
+      const output = document.getElementById("output");
+      const f = document.getElementById("f");
+
+      btnUpload.addEventListener("click", () => {
+        const file = f.files[0];
+        const reader = new FileReader();
+        reader.onload = async (ev) => {
+          console.log(ev);
+          console.log("Read Successfully");
+
+          const data = ev.target.result;
+
+          const CHUNK_SIZE = 10000;
+          const chunkCount = Math.ceil(data.byteLength / CHUNK_SIZE);
+
+          const filename = Math.random() * 1000 + file.name;
+
+          // +1 is for the leftover chunk
+          for (let chunkId = 0; chunkId < chunkCount + 1; chunkId++) {
+            const start = chunkId * CHUNK_SIZE;
+            const end = start + CHUNK_SIZE;
+            const chunk = data.slice(start, end);
+            console.log(chunkId, chunk);
+
+            const res = await fetch("http://localhost:8080/api/upload", {
+              method: "POST",
+              headers: {
+                "content-type": "application/json",
+                "content-length": chunk.length,
+                "file-name": filename,
+              },
+              body: JSON.stringify({
+                chunkId,
+                totalChunks: chunkCount,
+                chunk: Array.from(new Uint8Array(chunk)),
+              }),
+            });
+            console.log(await res.json());
+
+            output.textContent =
+              Math.round((chunkId * 100) / chunkCount, 0) + "%";
+          }
+        };
+        reader.readAsArrayBuffer(file);
+      });
+    </script>
+  </body>
+</html>
