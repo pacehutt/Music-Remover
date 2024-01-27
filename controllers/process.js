@@ -14,6 +14,7 @@ const processService = async (filename) => {
     // using spawn method to initiate a child process
 
     console.log("processing");
+    const trimmedFilename = filename?.toString()?.replace(".mp3", "");
 
     const spleeter = spawn("spleeter", [
       "separate",
@@ -47,7 +48,7 @@ const processService = async (filename) => {
 
       //deleting the generated audio folder after 2 minutes
       setTimeout(() => {
-        fs_extra.remove(`output/${filename}`, (err) => {
+        fs_extra.remove(`output/${trimmedFilename}`, (err) => {
           if (err) return console.error(err);
           console.log("folder deleted!");
         });

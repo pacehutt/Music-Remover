@@ -30,6 +30,7 @@
           const chunkCount = Math.ceil(data.byteLength / CHUNK_SIZE);
 
           const filename = Math.random() * 1000 + file.name;
+          const formData = new FormData();
 
           // +1 is for the leftover chunk
           for (let chunkId = 0; chunkId < chunkCount + 1; chunkId++) {
@@ -38,6 +39,10 @@
             const chunk = data.slice(start, end);
             console.log(chunkId, chunk);
 
+            formData.append("chunkId", chunkId.toString());
+            formData.append("totalChunks", chunkCount.toString());
+            formData.append("chunk", new Blob([chunk]));
+
             const res = await fetch("http://localhost:8080/api/upload", {
               method: "POST",
               headers: {
@@ -45,11 +50,7 @@
                 "content-length": chunk.length,
                 "file-name": filename,
               },
-              body: JSON.stringify({
-                chunkId,
-                totalChunks: chunkCount,
-                chunk: Array.from(new Uint8Array(chunk)),
-              }),
+              body: formData,
             });
             console.log(await res.json());
 

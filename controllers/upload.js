@@ -3,9 +3,9 @@ const fs = require("fs");
 const { processService } = require("./process");
 
 const uploadService = async (req, res, next) => {
-  const filename = req.headers["file-name"];
+  // const filename = req.headers["file-name"];
   // console.log(req.body, "here");
-  const { chunk, chunkId, totalChunks } = req.body;
+  const { chunk, chunkId, totalChunks, filename } = req.body;
   console.log(chunkId, totalChunks);
 
   fs.appendFileSync(`./uploads/${filename}`, Buffer.from(chunk));

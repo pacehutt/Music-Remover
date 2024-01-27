@@ -22,9 +22,9 @@ app.get("/", (req, res) => {
 });
 
 app.post("/api/upload", uploadService);
-app.get("/api/process", pollingService);
-app.get("api/download/vocal", downloadVocalService);
-app.get("api/download/music", downloadMusicService);
+app.get("/api/polling", pollingService);
+app.get("/api/download/vocal", downloadVocalService);
+app.get("/api/download/music", downloadMusicService);
 
 app.listen(port, () =>
   console.log(`Vocals Splitter listening on port 
