@@ -70,5 +70,4 @@ This application is licensed under the [MIT ](https://en.wikipedia.org/wiki/MIT_
 ---
 
 ### Acknowledgements 🙏
-
-This application was built using the spleeter library, which was created by Deezer Research. I am grateful to the Deezer Research team for their work on this library.
+This application leverages the Spleeter library, an open-source audio source separation tool developed by Deezer Research. Acknowledgments to the Deezer Research team for their significant contributions to the field and for making this powerful library publicly available
